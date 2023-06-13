@@ -11,7 +11,7 @@ public class BalanceParenthesis {
             System.out.print("\nEnter the Parentheses Set " + (i + 1) + ": "); //Prompt for each set of parentheses
             String parentheses = scanner.next(); // Read each set of parentheses
             
-            if (isBalanced(parentheses)) { //method to be defined later
+            if (isBalanced(parentheses)) { //For Results
                 System.out.println("\nBALANCED");
             } else {
                 System.out.println("\nNOT BALANCED");
@@ -27,18 +27,18 @@ public class BalanceParenthesis {
         for (int i = 0; i < parentheses.length(); i++) {
             char parenthesisChar = parentheses.charAt(i);
             
-            if (parenthesisChar == '(' || parenthesisChar == '{') {
+            if (parenthesisChar == '(' || parenthesisChar == '{') { // Push the opening parenthesis onto the stack
                 stack.push(parenthesisChar);
             } else if (parenthesisChar == ')' || parenthesisChar == '}') {
                 if (stack.isEmpty()) {
-                    return false; // Unbalanced
+                    return false; // Unbalanced: Missing opening parenthesis.
                 }
                 
                 char matchingOpeningParenthesis = stack.pop();
                 
                 if ((parenthesisChar == ')' && matchingOpeningParenthesis != '(') || 
                     (parenthesisChar == '}' && matchingOpeningParenthesis != '{')) {
-                    return false; // Unbalanced
+                    return false; // Unbalanced: Mismatched closing parenthesis
                 }
             }
         }
