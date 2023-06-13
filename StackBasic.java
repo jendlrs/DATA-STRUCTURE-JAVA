@@ -13,7 +13,7 @@ public class StackBasic {
     // Add element to top of stack
     public void push(int value) {
         if (top < maxSize - 1) {
-            stackArray[++top] = value;
+            stackArray[++top] = value; // Increment top and add the value to the stack
         } else {
             System.out.println("Unable to push " + value + ". The stack is already full.");
         }
@@ -41,16 +41,16 @@ public class StackBasic {
     }
 
     public static void main(String args[]) {
-        StackBasic stack = new StackBasic(3);
+        StackBasic stack = new StackBasic(3); //Create a stack of size 3
         stack.push(1);
         stack.push(2);
-        stack.push(3);
-        stack.push(4); //to check if it will push when the stack is full.
+        // stack.push(3);
+        // stack.push(4); //to check if it will push when the stack is full.
         System.out.println("Top element: " + stack.peek());
         stack.pop();
-        stack.pop();
-        stack.pop();
-        stack.pop(); //to check if it will pop when the stack is empty.
+        // stack.pop();
+        // stack.pop();
+        // stack.pop(); //to check if it will pop when the stack is empty.
         System.out.println("Top element: " + stack.peek());
     }
 }
