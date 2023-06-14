@@ -5,7 +5,7 @@ public class BinaryToDecimal {
         Scanner scanner = new Scanner(System.in);
 
         // Prompt the user to enter the number of binary numbers
-        System.out.print("Enter the number of binary numbers: ");
+        System.out.print("Enter the number of binary numbers to be tested: ");
         int numBinaryNumbers = scanner.nextInt();
         int[] binaryArray = new int[numBinaryNumbers];
 
@@ -13,7 +13,18 @@ public class BinaryToDecimal {
         for (int i = 0; i < numBinaryNumbers; i++) {
             // Prompt the user to enter a binary number
             System.out.print("Enter binary number " + (i + 1) + ": ");
-            int binary = scanner.nextInt();
+            int binary;
+
+            //to make sure that user will enter correct binary numbers only.
+            while (true) {
+                binary = scanner.nextInt();
+                if (isValidBinary(binary)) {
+                    break;
+                } else {
+                    System.out.println("Invalid binary number. Please enter a binary number containing only 0s and 1s.");
+                    System.out.print("Enter binary number " + (i + 1) + ": ");
+                }
+            }
             binaryArray[i] = binary;
         }
 
@@ -26,6 +37,16 @@ public class BinaryToDecimal {
             int decimal = decimalResultArray[i];
             System.out.println("Decimal number " + (i + 1) + ": " + decimal);
         }
+    }
+    //check if a binary number is valid
+    public static boolean isValidBinary(int binary) {
+        String binaryString = String.valueOf(binary);
+        for (char digit : binaryString.toCharArray()) {
+            if (digit != '0' && digit != '1') {
+                return false;
+            }
+        }
+        return true;
     }
 
     //convert an array of binary numbers to decimal
