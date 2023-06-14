@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack
 
 public class BinaryToDecimal {
     public static void main(String[] args) {
@@ -49,13 +50,30 @@ public class BinaryToDecimal {
         return true;
     }
 
-    //convert an array of binary numbers to decimal
+    //convert an array of binary numbers to decimal using stack
     public static int[] binaryToDecimal(int[] binaryArray) {
         int[] decimalResultArray = new int[binaryArray.length];
 
         for (int i = 0; i < binaryArray.length; i++) {
-            String binaryString = String.valueOf(binaryArray[i]);
-            decimalResultArray[i] = Integer.parseInt(binaryString, 2);
+            int binary = binaryArray[i];
+            int decimal = 0;
+            int power = 0;
+            Stack<Integer> stack = new Stack<>();
+
+            // Push each binary digit to the stack
+            while (binary > 0) {
+                stack.push(binary % 10);
+                binary /= 10;
+            }
+
+            // Convert binary digits to decimal
+            while (!stack.isEmpty()) {
+                int digit = stack.pop();
+                decimal += digit * Math.pow(2, power);
+                power++;
+            }
+
+            decimalResultArray[i] = decimal;
         }
 
         return decimalResultArray;
