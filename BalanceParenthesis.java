@@ -6,24 +6,30 @@ public class BalanceParenthesis {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nEnter the number of sets of parentheses: ");
         int numberOfSets = scanner.nextInt(); // Number of sets of parentheses
-        
+        scanner.nextLine();
+
+        String [] setsOfParentheses = new String[numberOfSets]; //Store the sets of parentheses
         for (int i = 0; i < numberOfSets; i++) {
             System.out.print("\nEnter the Parentheses Set " + (i + 1) + ": "); //Prompt for each set of parentheses
-            String parentheses = scanner.next(); // Read each set of parentheses
-            
-            if (isBalanced(parentheses)) { //For Results
+            setsOfParentheses[i] = scanner.nextLine(); // Get the set of parentheses and store to parentheses array
+        }
+
+        // Check each set of parentheses for balance
+        for (String parentheses : setsOfParentheses) {
+            if (isBalanced(parentheses)) {
                 System.out.println("\nBALANCED");
             } else {
                 System.out.println("\nNOT BALANCED");
             }
         }
-        
+
         scanner.close();
     }
 
-        public static boolean isBalanced(String parentheses) {
+    public static boolean isBalanced(String parentheses) {
         Stack<Character> stack = new Stack<>();
         
+        // Iterate through each character in the parentheses string
         for (int i = 0; i < parentheses.length(); i++) {
             char parenthesisChar = parentheses.charAt(i);
             
